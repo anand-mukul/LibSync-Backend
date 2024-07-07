@@ -15,14 +15,15 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "prettier": "^3.3.2"
   },
   "keywords": [
+    "BookHub",
     "JavaScript",
     "Backend",
     "Express",
     "NodeJS",
-    "BookHub",
     "ESModules"
   ],
   "author": "Mukul Anand",
