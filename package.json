@@ -1,0 +1,30 @@
+{
+  "name": "bookhub-backend",
+  "version": "1.0.0",
+  "description": "An Express.js backend for BookHub",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "nodemon": "^3.1.4"
+  },
+  "keywords": [
+    "JavaScript",
+    "Backend",
+    "Express",
+    "NodeJS",
+    "BookHub",
+    "ESModules"
+  ],
+  "author": "Mukul Anand",
+  "license": "MIT"
+}
