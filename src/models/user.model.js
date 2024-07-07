@@ -120,4 +120,26 @@ userSchema.methods.generateRefreshToken = function () {
   );
 };
 
+userSchema.methods.follow = async function (userId) {
+  if (!this.following.includes(userId)) {
+    this.following.push(userId);
+    await this.save();
+    const user = await User.findById(userId);
+    user.followers.push(this._id);
+    await user.save();
+  }
+};
+
+userSchema.methods.unfollow = async function (userId) {
+  this.following = this.following.filter(
+    (followedUserId) => !followedUserId.equals(userId)
+  );
+  await this.save();
+  const user = await User.findById(userId);
+  user.followers = user.followers.filter(
+    (followerId) => !followerId.equals(this._id)
+  );
+  await user.save();
+};
+
 export const User = mongoose.model("User", userSchema);

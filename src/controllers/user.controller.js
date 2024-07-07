@@ -85,14 +85,14 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 const loginUser = asyncHandler(async (req, res) => {
-  const { username, email, password } = req.body;
+  const { email, password } = req.body;
 
-  if (!username && !email) {
+  if (!email) {
     throw new ApiError(400, "Username or Email is required");
   }
 
   const user = await User.findOne({
-    $or: [{ username }, { email }],
+    email,
   });
 
   if (!user) {
@@ -204,4 +204,41 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
   }
 });
 
-export { registerUser, loginUser, logoutUser, refreshAccessToken };
+const followUser = asyncHandler(async (req, res) => {
+  const { userId } = req.params;
+  const user = await User.findById(req.user._id);
+
+  if (!user) {
+    throw new ApiError(404, "User not found");
+  }
+
+  await user.follow(userId);
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, "User followed successfully", {}));
+});
+
+const unfollowUser = asyncHandler(async (req, res) => {
+  const { userId } = req.params;
+  const user = await User.findById(req.user._id);
+
+  if (!user) {
+    throw new ApiError(404, "User not found");
+  }
+
+  await user.unfollow(userId);
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, "User unfollowed successfully", {}));
+});
+
+export {
+  registerUser,
+  loginUser,
+  logoutUser,
+  refreshAccessToken,
+  followUser,
+  unfollowUser,
+};
