@@ -18,8 +18,6 @@ const uploadOnCloudinary = async (localFilePath) => {
       resource_type: "auto",
     });
 
-    console.log("File uploaded to Cloudinary: \n\n", response.url + "\n\n");
-
     if (fs.existsSync(localFilePath)) {
       fs.unlinkSync(localFilePath);
     }
