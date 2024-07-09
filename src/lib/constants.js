@@ -1,1 +1,1 @@
-export const DB_NAME = "bookhub";
+export const DB_NAME = "libsync_db";

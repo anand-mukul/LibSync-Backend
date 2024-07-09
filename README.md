@@ -1,1 +1,1 @@
-# BookHub Backend
+# LibSync Backend

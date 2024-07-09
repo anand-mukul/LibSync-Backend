@@ -1,7 +1,7 @@
 import { asyncHandler, ApiError, ApiResponse } from "../lib/utils.js";
 import { User } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../lib/cloudinary.js";
-import { generateAccessAndRefereshTokens } from "../lib/jwt.js";
+import { generateAccessAndRefereshTokens } from "../lib/token.js";
 import jwt from "jsonwebtoken";
 
 const registerUser = asyncHandler(async (req, res) => {
