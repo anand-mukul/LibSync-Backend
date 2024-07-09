@@ -1,7 +1,7 @@
 {
-  "name": "bookhub-backend",
-  "version": "1.0.0",
-  "description": "An Express.js backend for BookHub",
+  "name": "libsync-backend",
+  "version": "1.0.1",
+  "description": "An Express.js backend for LibSync",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
