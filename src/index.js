@@ -4,9 +4,11 @@ import app from "./app.js";
 
 const PORT = process.env.PORT || 65535;
 
+let server;
+
 connectDB()
   .then(() => {
-    const server = app.listen(PORT, () => {
+    server = app.listen(PORT, () => {
       console.log(`\n🔗 Server is running on http://localhost:${PORT}`);
       console.log(`🌟 Environment: ${process.env.NODE_ENV || "development"}\n`);
     });
