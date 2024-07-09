@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 65535;
 
 connectDB()
   .then(() => {
-    app.listen(PORT, () => {
+    const server = app.listen(PORT, () => {
       console.log(`\n🔗 Server is running on http://localhost:${PORT}`);
       console.log(`🌟 Environment: ${process.env.NODE_ENV || "development"}\n`);
     });
@@ -39,6 +39,11 @@ process.on("uncaughtException", (err) => {
 });
 
 process.on("unhandledRejection", (reason, promise) => {
-  console.error("\n❌ Unhandled Rejection at: \n\n", promise, "\nReason: \n\n", reason);
+  console.error(
+    "\n❌ Unhandled Rejection at: \n\n",
+    promise,
+    "\nReason: \n\n",
+    reason
+  );
   process.exit(1);
 });
