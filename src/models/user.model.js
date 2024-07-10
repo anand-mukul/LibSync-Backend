@@ -11,7 +11,7 @@ const userSchema = new Schema(
       lowercase: true,
       trim: true,
       minlength: 3,
-      maxlength: 15,
+      maxlength: 20,
       index: true,
     },
     email: {
