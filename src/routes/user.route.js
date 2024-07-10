@@ -44,7 +44,7 @@ router.get(
   "/auth/google/callback",
   passport.authenticate("google", {
     failureRedirect: `https://${process.env.FRONTEND_URL}/sign-in`,
-    session: false,
+    session: true,
   }),
   (req, res) => {
     const { accessToken, refreshToken } = req.authInfo;
