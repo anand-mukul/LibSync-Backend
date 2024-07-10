@@ -8,7 +8,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/api/v1/users/auth/google/callback",
+      callbackURL: "https://api.neosync.cloud/api/v1/users/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
