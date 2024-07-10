@@ -1,7 +1,7 @@
 import { ApiError } from "./utils.js";
 import { User } from "../models/user.model.js";
 
-const generateAccessAndRefereshTokens = async (userId) => {
+const generateAccessAndRefreshTokens = async (userId) => {
   try {
     const user = await User.findById(userId);
     const accessToken = user.generateAccessToken();
@@ -19,4 +19,4 @@ const generateAccessAndRefereshTokens = async (userId) => {
   }
 };
 
-export { generateAccessAndRefereshTokens };
+export { generateAccessAndRefreshTokens };

@@ -36,7 +36,13 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      required: true,
+      required: function () {
+        return !this.oauth;
+      },
+    },
+    oauth: {
+      type: Boolean,
+      default: false,
     },
     booksSaved: [
       {

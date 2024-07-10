@@ -1,7 +1,7 @@
 import { asyncHandler, ApiError, ApiResponse } from "../lib/utils.js";
 import { User } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../lib/cloudinary.js";
-import { generateAccessAndRefereshTokens } from "../lib/token.js";
+import { generateAccessAndRefreshTokens } from "../lib/token.js";
 import jwt from "jsonwebtoken";
 
 const registerUser = asyncHandler(async (req, res) => {
@@ -86,7 +86,7 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new ApiError(401, "Please enter valid username or password");
   }
 
-  const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(
+  const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
     user._id
   );
 
@@ -169,7 +169,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
       sameSite: "Strict",
     };
 
-    const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(
+    const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
       user._id
     );
 
