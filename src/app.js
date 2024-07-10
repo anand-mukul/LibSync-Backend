@@ -3,8 +3,12 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import passport from "passport";
+import mongoose from "mongoose";
+import MongoStore from "connect-mongo";
 
 const app = express();
+
+const mongoUrl = process.env.MONGODB_URI;
 
 const corsOrigins = process.env.CORS_ORIGIN
   ? process.env.CORS_ORIGIN.split(",")
@@ -33,10 +37,16 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: mongoUrl,
+      collectionName: "sessions",
+      ttl: 14 * 24 * 60 * 60,
+    }),
     cookie: {
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,
-      sameSite: "lax",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      maxAge: 14 * 24 * 60 * 60 * 1000,
     },
   })
 );
@@ -48,5 +58,10 @@ import userRouter from "./routes/user.route.js";
 
 // routes use
 app.use("/api/v1/users", userRouter);
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("\n💥 Something broke! 🤯\n\n");
+});
 
 export default app;
