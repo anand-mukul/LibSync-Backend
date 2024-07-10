@@ -13,6 +13,7 @@ import { upload } from "../middlewares/multer.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import passport from "passport";
 import "../lib/passport.js";
+import { COOKIE_OPTIONS } from "../lib/constants.js";
 
 const router = Router();
 
@@ -48,15 +49,10 @@ router.get(
   }),
   (req, res) => {
     const { accessToken, refreshToken } = req.authInfo;
-    const options = {
-      httpOnly: true,
-      secure: true,
-      sameSite: "Strict",
-    };
 
     res
-      .cookie("accessToken", accessToken, options)
-      .cookie("refreshToken", refreshToken, options)
+      .cookie("accessToken", accessToken, COOKIE_OPTIONS)
+      .cookie("refreshToken", refreshToken, COOKIE_OPTIONS)
       .redirect(`https://${process.env.FRONTEND_URL}/success`);
   }
 );
